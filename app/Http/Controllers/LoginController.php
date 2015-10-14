@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-   public function login()
-   {
-       return view('login.login');
-   }
+    public function login()
+    {
+        return view('login.login');
+    }
 
     public function post(LoginRequest $request)
     {
-        auth()->attempt(['name' => $request->name, 'password']);
+        if (Auth::attempt(['usuario' => $request->usuario, 'password' => $request->password])) {
+            return redirect()->route('dashboard');
+        }
+        else{
+            return redirect()->back()->withInput()->withErrors(['errors' => 'Password incorrecto']);
+        }
     }
 }

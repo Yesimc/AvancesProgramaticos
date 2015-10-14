@@ -7,23 +7,24 @@
 </head>
 <body>
 <div class="container">
-    <form action="" method="post">
+    {!! Form::open(['route' => 'login.post', 'method' => 'POST']) !!}
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
+                    <input name="password" type="password" class="validate">
                     <label for="password">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+                    {!! Form::text('usuario', null) !!}
+                    {!! Form::label('usuario', 'Usuario') !!}
                 </div>
             </div>
         <div class="row">
             <button>Login</button>
         </div>
-    </form>
+    {!! Form::close() !!}
+    @include('partials.errors')
 </div>
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/materialize.min.js') }}"></script>
