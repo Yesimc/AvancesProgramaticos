@@ -355,10 +355,26 @@ create table clon_horarios(
 );
 
 create table temas (
-id integer(10),
-id_materia integer(10) unsigned not null,
+id integer(10) unsigned not null auto_increment primary key,
+materia_id integer(10) unsigned not null,
+FOREIGN KEY (materia_id) REFERENCES materias(id),
 ciclo_id integer(10) unsigned not null,
+FOREIGN KEY (ciclo_id) REFERENCES ciclos(id),
+maestro_id integer(10) unsigned not null,
+FOREIGN KEY (maestro_id) REFERENCES maestros(id),
 unidad integer(10),
 tema varchar(50),
-fecha varchar(50)
+fecha varchar(50),
+created_at timestamp,
+	updated_at timestamp
+);
+
+create table subtemas (
+id integer(10) unsigned not null auto_increment primary key,
+tema_id integer(10) unsigned not null,
+FOREIGN KEY (tema_id) REFERENCES temas(id),
+subtemas varchar(255),
+fecha varchar(50),
+created_at timestamp,
+	updated_at timestamp
 );

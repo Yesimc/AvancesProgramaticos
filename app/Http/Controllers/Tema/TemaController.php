@@ -1,86 +1,33 @@
 <?php
 
 namespace App\Http\Controllers\Tema;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\TemaRequest\StoreTema;
 use App\Http\Controllers\Controller;
+use App\System\Repositories\TemaRepo;
 
 class TemaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $temaRepo;
+
+    public function __construct(TemaRepo $temaRepo)
     {
-        //
+        $this->temaRepo = $temaRepo;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index($id)
     {
-        //
+        return view('tema.create', compact('id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function getTema()
     {
-        //
+        return $this->temaRepo->getTemas();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function postTema(StoreTema $request, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $this->temaRepo->postTema($id);
     }
 }

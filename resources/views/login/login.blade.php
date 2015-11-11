@@ -10,14 +10,14 @@
     {!! Form::open(['route' => 'login.post', 'method' => 'POST']) !!}
             <div class="row">
                 <div class="input-field col s12">
-                    <input name="password" type="password" class="validate">
-                    <label for="password">Password</label>
+                    {!! Form::text('usuario', null) !!}
+                    {!! Form::label('usuario', 'Usuario') !!}
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    {!! Form::text('usuario', null) !!}
-                    {!! Form::label('usuario', 'Usuario') !!}
+                    <input name="password" type="password" class="validate">
+                    <label for="password">Password</label>
                 </div>
             </div>
         <div class="row">
